@@ -28,4 +28,4 @@ spring:
       password: admin@12345
 
 server:
-  port: 8080
+  port: 8090

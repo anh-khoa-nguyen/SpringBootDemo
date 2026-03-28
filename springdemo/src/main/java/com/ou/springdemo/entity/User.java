@@ -31,7 +31,7 @@ public class User {
     @Column(nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(name = "password_hash",nullable = false, unique = true, length = 255)
+    @Column(name = "password_hash",nullable = false, length = 255)
     private String passwordHash;
 
     @Enumerated(EnumType.STRING)
@@ -115,6 +115,27 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
+    // public User(
+    //     Long id,
+    //     String username,
+    //     String email,
+    //     String passwordHash,
+    //     Role role,
+    //     String fullName,
+    //     Instant createdAt,
+    //     Instant updatedAt
+    // ){
+    //     this.username = username;
+    //     this.email = email;
+    //     this.passwordHash = passwordHash;
+    //     this.role = role;
+    //     this.fullName = fullName;
+    // }
+
+    public static UserBuilder builder() {
+        return new UserBuilder();
+    }
+
     public static final class UserBuilder{
         private Long id;
         private String username;
@@ -128,6 +149,54 @@ public class User {
         public UserBuilder id(Long id){
             this.id = id;
             return this;
+        }
+
+        public UserBuilder username(String username){
+            this.username = username;
+            return this;
+        }
+
+        public UserBuilder email(String email){
+            this.email = email;
+            return this;
+        }
+
+        public UserBuilder passwordHash(String passwordHash){
+            this.passwordHash = passwordHash;
+            return this;
+        }
+
+        public UserBuilder role(Role role){
+            this.role = role;
+            return this;
+        }
+
+        public UserBuilder fullName(String fullName){
+            this.fullName = fullName;
+            return this;
+        }
+
+        public UserBuilder createdAt(Instant createdAt){
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public UserBuilder updatedAt(Instant updatedAt){
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
+        public User build(){
+            User user = new User();
+            user.setId(id);
+            user.setUsername(username);
+            user.setEmail(email);
+            user.setPasswordHash(passwordHash);
+            user.setRole(role);
+            user.setFullName(fullName);
+            user.setCreatedAt(createdAt);
+            user.setUpdatedAt(updatedAt);
+            return user;
         }
     }
 }
